@@ -10,12 +10,18 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "SERVER_URL", System.getenv("SERVER_URL") ?: "\"https://auth-test.1000sails.com/dpos-auth-web/s/\"")
+        buildConfigField("String", "AGREEMENT_URL", System.getenv("AGREEMENT_URL") ?: "\"http://www.1000sails.com/test/resources/agreement_m.html\"")
+        buildConfigField("String", "UPDATE_URL", "\"https://app-publisher.1000sails.com:8310/app-publisher-web/s/\"")
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    dataBinding {
+        enabled = true
     }
 }
 

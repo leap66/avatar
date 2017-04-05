@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.leap.mini.config.PrecisionConfig.User" />
+
+        <variable
+            name="item"
+            type="com.leap.mini.interactor.api_interface.auth.usecase.RegisterRequest" />
+
+        <variable
+            name="presenter"
+            type="com.leap.avatar.presentation.auth.RegisterActivity.Presenter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/title_bar_height"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@null"
+            android:onClick="@{()->presenter.onBack()}"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@mipmap/ic_global_back" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/register_and_free_use"
+                        android:textColor="@color/theme"
+                        android:textSize="@dimen/large_large_text_size" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="手机号"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/normal_text_size" />
+
+                        <com.leap.mini.widget.cleartextfield.ClearEditText
+                            android:id="@+id/phone_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="@string/register_phone_hint"
+                            android:inputType="phone"
+                            android:maxLength="@{User.mobile}"
+                            android:maxLines="1"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/text_grey"
+                            android:textSize="@dimen/normal_text_size"
+                            app:errMsg="@string/register_phone_empty" />
+
+                    </LinearLayout>
+
+                    <View style="@style/divider_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="您的姓名"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/normal_text_size" />
+
+                        <com.leap.mini.widget.cleartextfield.ClearEditText
+                            android:id="@+id/real_name_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="@string/register_name_hint"
+                            android:inputType="text"
+                            android:maxLength="@{User.name}"
+                            android:maxLines="1"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/text_grey"
+                            android:textSize="@dimen/normal_text_size"
+                            app:errMsg="@string/register_real_name_empty" />
+
+                    </LinearLayout>
+
+                    <View style="@style/divider_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="密码"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/normal_text_size" />
+
+                        <com.leap.mini.widget.cleartextfield.ClearEditText
+                            android:id="@+id/password_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="@string/register_password_hint"
+                            android:inputType="textPassword"
+                            android:maxLength="@{User.password}"
+                            android:maxLines="1"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/text_grey"
+                            android:textSize="@dimen/normal_text_size"
+                            app:errMsg="@string/register_password_empty" />
+
+                    </LinearLayout>
+
+                    <View style="@style/divider_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="确认密码"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/normal_text_size" />
+
+                        <com.leap.mini.widget.cleartextfield.ClearEditText
+                            android:id="@+id/repeat_password_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="@string/register_repeat_password_hint"
+                            android:inputType="textPassword"
+                            android:maxLength="@{User.password}"
+                            android:maxLines="1"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/text_grey"
+                            android:textSize="@dimen/normal_text_size"
+                            app:errMsg="@string/register_repeat_phone_empty" />
+
+                    </LinearLayout>
+
+                    <View style="@style/divider_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="短信验证码"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/normal_text_size" />
+
+                        <com.leap.mini.widget.cleartextfield.ClearEditText
+                            android:id="@+id/code_et"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:hint="@string/register_auth_code_hint"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:maxLines="1"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/text_grey"
+                            android:textSize="@dimen/normal_text_size"
+                            app:errMsg="@string/register_code_empty" />
+
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="wrap_content" />
+
+                        <com.leap.mini.widget.CountTimeTextView
+                            android:id="@+id/send_code_ct"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/border_theme_middle"
+                            android:gravity="center"
+                            android:onClick="@{()->presenter.onGetCode()}"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:text="@string/register_get_auth_code"
+                            android:textColor="@color/theme"
+                            android:textSize="@dimen/middle_text_size" />
+
+                    </LinearLayout>
+
+                    <View style="@style/divider_line" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="60dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/agree_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:background="@drawable/cb_select"
+                        android:button="@null"
+                        android:checked="false" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/register_read_and_agree"
+                        android:textColor="@color/text_warm"
+                        android:textSize="@dimen/middle_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:onClick="@{()->presenter.onReadAgreement()}"
+                        android:text="@string/register_qianfan_agreement"
+                        android:textColor="@color/link"
+                        android:textSize="@dimen/middle_text_size" />
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/btn_theme_small"
+                    android:onClick="@{()->presenter.onRegister()}"
+                    android:text="@string/register"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/large_text_size" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</layout>
