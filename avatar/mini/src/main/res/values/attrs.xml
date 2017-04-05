@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--下拉刷新-->
+    <declare-styleable name="DefaultRefreshLayout">
+        <attr name="footer" format="boolean"/>
+        <attr name="header" format="boolean"/>
+    </declare-styleable>
+
+    <!--clearEdt-->
+    <declare-styleable name="ClearTextField">
+
+        <attr name="showClear" format="boolean"/>
+        <!--edit-->
+        <attr name="edit_text" format="string"/>
+        <attr name="edit_text_size" format="dimension"/>
+        <attr name="edit_text_color" format="color"/>
+        <attr name="edit_maxLength" format="integer"/>
+        <attr name="edit_hint" format="string"/>
+        <attr name="edit_hint_color" format="color"/>
+        <attr name="edit_left_drawable" format="integer"/>
+        <attr name="edit_padding" format="dimension"/>
+        <attr name="edit_padding_left" format="dimension"/>
+        <attr name="edit_padding_top" format="dimension"/>
+        <attr name="edit_padding_right" format="dimension"/>
+        <attr name="edit_padding_bottom" format="dimension"/>
+        <attr name="edit_errMsg" format="string"/>
+        <attr name="edit_gravity" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="top" value="1"/>
+            <enum name="right" value="2"/>
+            <enum name="bottom" value="3"/>
+            <enum name="center" value="4"/>
+            <enum name="center_vertical" value="5"/>
+            <enum name="center_horizontal" value="6"/>
+        </attr>
+        <attr name="edit_inputType" format="enum">
+            <enum name="phone" value="0x00000003"/>
+            <enum name="password" value="0"/>
+            <enum name="number" value="0x00000002"/>
+        </attr>
+
+        <!--label-->
+        <attr name="label_text" format="string"/>
+        <attr name="label_text_size" format="dimension"/>
+        <attr name="label_text_color" format="color"/>
+        <attr name="label_layout_width" format="dimension"/>
+        <attr name="label_padding" format="dimension"/>
+        <attr name="label_padding_left" format="dimension"/>
+        <attr name="label_padding_top" format="dimension"/>
+        <attr name="label_padding_right" format="dimension"/>
+        <attr name="label_padding_bottom" format="dimension"/>
+        <attr name="label_gravity" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="top" value="1"/>
+            <enum name="right" value="2"/>
+            <enum name="bottom" value="3"/>
+            <enum name="center" value="4"/>
+            <enum name="center_vertical" value="5"/>
+            <enum name="center_horizontal" value="6"/>
+        </attr>
+
+
+    </declare-styleable>
+
+    <declare-styleable name="ClearEditText">
+        <attr name="errMsg" format="string"/>
+    </declare-styleable>
+
+    <!--dialog-->
+    <declare-styleable name="ProgressWheel">
+        <attr name="progressIndeterminate" format="boolean" />
+        <attr name="barColor" format="color" />
+        <attr name="rimColor" format="color" />
+        <attr name="rimWidth" format="dimension" />
+        <attr name="spinSpeed" format="float" />
+        <attr name="barSpinCycleTime" format="integer" />
+        <attr name="circleRadius" format="dimension" />
+        <attr name="fillRadius" format="boolean" />
+        <attr name="barWidth" format="dimension" />
+        <attr name="linearProgress" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="Rotate3dAnimation">
+        <attr name="rollType" format="enum">
+            <enum name="x" value="0"/>
+            <enum name="y" value="1"/>
+            <enum name="z" value="2"/>
+        </attr>
+        <attr name="fromDeg" format="float" />
+        <attr name="toDeg" format="float" />
+        <attr name="pivotX" format="fraction"/>
+        <attr name="pivotY" format="fraction" />
+    </declare-styleable>
+
+
+</resources>
