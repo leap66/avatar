@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 // 一般我们把AsyncTask的子类定义在Activity的内部
 // 通过这种方式，我们就可以轻松地在这里更改UI线程
-class UpdateTask extends AsyncTask<String, Integer, String> {
+public class UpdateTask extends AsyncTask<String, Integer, String> {
   private Context context;
   private PowerManager.WakeLock mWakeLock;
   private ProgressBar mProgressBar;
@@ -33,7 +33,7 @@ class UpdateTask extends AsyncTask<String, Integer, String> {
   private OnErrorListener errorListener;
   private long position = 0;
 
-  UpdateTask(Context context, long position, ProgressBar progressBar, TextView textView,
+  public UpdateTask(Context context, long position, ProgressBar progressBar, TextView textView,
       String filePath) {
     this.context = context;
     this.mProgressBar = progressBar;

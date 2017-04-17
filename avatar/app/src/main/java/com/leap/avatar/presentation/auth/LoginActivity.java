@@ -1,12 +1,12 @@
 package com.leap.avatar.presentation.auth;
 
 import com.leap.avatar.R;
+import com.leap.avatar.api_interface.auth.usecase.LoginCase;
 import com.leap.avatar.databinding.ActivityAuthLoginBinding;
+import com.leap.avatar.model.auth.BLoginResult;
 import com.leap.avatar.presentation.base.BaseActivity;
 import com.leap.avatar.presentation.main.MainActivity;
 import com.leap.mini.cmp.StorageMgr;
-import com.leap.mini.interactor.api_interface.auth.usecase.LoginCase;
-import com.leap.mini.interactor.model.auth.BLoginResult;
 import com.leap.mini.interactor.network.subscriber.PureSubscriber;
 import com.leap.mini.interactor.network.subscriber.Response;
 import com.leap.mini.util.DialogUtil;

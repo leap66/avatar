@@ -1,7 +1,7 @@
 package com.leap.mini.cmp;
 
-import com.leap.mini.interactor.model.entity.BSessionShop;
-import com.leap.mini.interactor.model.entity.BSessionUser;
+import com.leap.mini.model.BSessionShop;
+import com.leap.mini.model.BSessionUser;
 import com.leap.mini.util.GsonUtil;
 import com.leap.mini.util.IsEmpty;
 
@@ -19,6 +19,8 @@ public class StorageMgr {
   public static String LEVEL_USER = "user";// 用户级别（必需登录后使用）
   public static String LEVEL_SHOP = "shop";// 门店级别缓存（必需选择门店后使用）（默认级别）
   public static String LEVEL_GLOBAL = "global";// 全局级别
+  private static BSessionUser user;
+  private static BSessionShop shop;
 
   public static void init(Context context) {
     storage = context.getSharedPreferences("mini", Context.MODE_PRIVATE);
@@ -81,22 +83,16 @@ public class StorageMgr {
    *          缓存级别(用户，门店，全局）
    */
   public static void set(String key, String value, String level) throws RuntimeException {
-    BSessionUser user = SessionMgr.getUser();
-    BSessionShop shop = SessionMgr.getShop();
     String k = "";
     if (level.equals(StorageMgr.LEVEL_USER) || level.equals(StorageMgr.LEVEL_SHOP)) {
       if (!IsEmpty.object(user)) {
         k += user.getId();
-      } else {
-        throw new NullPointerException("用户为空");
       }
       k += "_";
     }
     if (level.equals(StorageMgr.LEVEL_SHOP)) {
       if (!IsEmpty.object(shop)) {
         k += shop.getId();
-      } else {
-        throw new NullPointerException("门店为空");
       }
       k += "_";
     }
@@ -162,8 +158,6 @@ public class StorageMgr {
    *          缓存级别(用户，门店，全局）
    */
   public static String get(String key, String level) {
-    BSessionUser user = SessionMgr.getUser();
-    BSessionShop shop = SessionMgr.getShop();
     String k = "";
     if (level.equals(StorageMgr.LEVEL_USER) || level.equals(StorageMgr.LEVEL_SHOP)) {
       if (!IsEmpty.object(user)) {

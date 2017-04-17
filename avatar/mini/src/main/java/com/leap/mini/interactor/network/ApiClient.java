@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.leap.mini.R;
-import com.leap.mini.cmp.SessionMgr;
 import com.leap.mini.cmp.TokenMgr;
 import com.leap.mini.interactor.network.subscriber.ApiException;
 import com.leap.mini.interactor.network.subscriber.NullOnEmptyConverterFactory;
@@ -142,7 +141,8 @@ public class ApiClient {
   }
 
   public static Retrofit shopClient() {
-    return shopClient(SessionMgr.getShopDomain());
+    // TODO
+    return shopClient(baseUrl);
   }
 
   // 在header里添加了token的retrofit对象

@@ -3,11 +3,11 @@ package com.leap.avatar.presentation.auth;
 import java.util.UUID;
 
 import com.leap.avatar.R;
+import com.leap.avatar.api_interface.auth.usecase.CheckMobileCase;
+import com.leap.avatar.api_interface.auth.usecase.RegisterCase;
+import com.leap.avatar.api_interface.auth.usecase.RegisterRequest;
+import com.leap.avatar.api_interface.auth.usecase.SendSmsCase;
 import com.leap.avatar.databinding.ActivityAuthRegisterBinding;
-import com.leap.mini.interactor.api_interface.auth.usecase.CheckMobileCase;
-import com.leap.mini.interactor.api_interface.auth.usecase.RegisterCase;
-import com.leap.mini.interactor.api_interface.auth.usecase.RegisterRequest;
-import com.leap.mini.interactor.api_interface.auth.usecase.SendSmsCase;
 import com.leap.mini.interactor.network.subscriber.PureSubscriber;
 import com.leap.mini.interactor.network.subscriber.Response;
 import com.leap.avatar.presentation.base.BaseActivity;

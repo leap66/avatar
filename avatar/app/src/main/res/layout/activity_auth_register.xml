@@ -4,11 +4,11 @@
 
     <data>
 
-        <import type="com.leap.mini.config.PrecisionConfig.User" />
+        <import type="com.leap.avatar.config.PrecisionConfig.User" />
 
         <variable
             name="item"
-            type="com.leap.mini.interactor.api_interface.auth.usecase.RegisterRequest" />
+            type="com.leap.avatar.api_interface.auth.usecase.RegisterRequest" />
 
         <variable
             name="presenter"

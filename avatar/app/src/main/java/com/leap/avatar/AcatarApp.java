@@ -1,6 +1,6 @@
 package com.leap.avatar;
 
-import com.leap.mini.cmp.SessionMgr;
+import com.leap.avatar.cmp.SessionMgr;
 import com.leap.mini.cmp.StorageMgr;
 import com.leap.mini.cmp.TokenMgr;
 import com.leap.mini.interactor.network.ApiClient;
