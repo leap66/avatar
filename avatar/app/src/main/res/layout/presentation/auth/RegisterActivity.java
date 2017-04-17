@@ -3,12 +3,12 @@ package com.leap.mini.presentation.auth;
 import java.util.UUID;
 
 import com.leap.mini.databinding.ActivityAuthRegisterBinding;
-import com.leap.mini.interactor.api_interface.auth.usecase.CheckMobileCase;
-import com.leap.mini.interactor.api_interface.auth.usecase.RegisterCase;
-import com.leap.mini.interactor.api_interface.auth.usecase.RegisterRequest;
-import com.leap.mini.interactor.api_interface.auth.usecase.SendSmsCase;
-import com.leap.mini.interactor.network.subscriber.PureSubscriber;
-import com.leap.mini.interactor.network.subscriber.Response;
+import com.leap.mini.net.api_interface.auth.usecase.CheckMobileCase;
+import com.leap.mini.net.api_interface.auth.usecase.RegisterCase;
+import com.leap.mini.net.api_interface.auth.usecase.RegisterRequest;
+import com.leap.mini.net.api_interface.auth.usecase.SendSmsCase;
+import com.leap.mini.net.PureSubscriber;
+import com.leap.mini.net.network.subscriber.Response;
 import com.leap.mini.presentation.base.BaseActivity;
 import com.leap.mini.util.DialogUtil;
 import com.leap.mini.util.IsEmpty;

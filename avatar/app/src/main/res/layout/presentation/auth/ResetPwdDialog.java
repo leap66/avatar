@@ -1,12 +1,12 @@
 package com.leap.mini.presentation.auth;
 
-import com.leap.mini.cmp.StorageMgr;
+import com.leap.mini.mgr.StorageMgr;
 import com.leap.mini.databinding.DialogAuthResetPwdBinding;
-import com.leap.mini.interactor.api_interface.auth.usecase.RegisterRequest;
-import com.leap.mini.interactor.api_interface.auth.usecase.SendSmsCase;
-import com.leap.mini.interactor.listener.TextChangedListener;
-import com.leap.mini.interactor.network.subscriber.PureSubscriber;
-import com.leap.mini.interactor.network.subscriber.Response;
+import com.leap.mini.net.api_interface.auth.usecase.RegisterRequest;
+import com.leap.mini.net.api_interface.auth.usecase.SendSmsCase;
+import com.leap.mini.util.listener.TextChangedListener;
+import com.leap.mini.net.PureSubscriber;
+import com.leap.mini.net.network.subscriber.Response;
 import com.leap.mini.util.DialogUtil;
 import com.leap.mini.util.IsEmpty;
 import com.leap.mini.util.StringUtil;

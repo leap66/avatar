@@ -1,9 +1,9 @@
 package com.leap.avatar;
 
-import com.leap.avatar.cmp.SessionMgr;
-import com.leap.mini.cmp.StorageMgr;
-import com.leap.mini.cmp.TokenMgr;
-import com.leap.mini.interactor.network.ApiClient;
+import com.leap.avatar.mgr.SessionMgr;
+import com.leap.mini.mgr.StorageMgr;
+import com.leap.mini.mgr.TokenMgr;
+import com.leap.mini.net.ApiClient;
 
 import android.support.multidex.MultiDexApplication;
 

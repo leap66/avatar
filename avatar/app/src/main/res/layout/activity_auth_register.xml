@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.leap.avatar.api_interface.auth.usecase.RegisterRequest" />
+            type="com.leap.avatar.net.auth.usecase.RegisterRequest" />
 
         <variable
             name="presenter"

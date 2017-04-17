@@ -1,11 +1,11 @@
 package com.leap.mini.presentation.auth;
 
-import com.leap.mini.cmp.StorageMgr;
+import com.leap.mini.mgr.StorageMgr;
 import com.leap.mini.databinding.ActivityAuthLoginBinding;
-import com.leap.mini.interactor.api_interface.auth.usecase.LoginCase;
-import com.leap.mini.interactor.model.auth.BLoginResult;
-import com.leap.mini.interactor.network.subscriber.PureSubscriber;
-import com.leap.mini.interactor.network.subscriber.Response;
+import com.leap.mini.net.api_interface.auth.usecase.LoginCase;
+import com.leap.mini.net.model.auth.BLoginResult;
+import com.leap.mini.net.PureSubscriber;
+import com.leap.mini.net.network.subscriber.Response;
 import com.leap.mini.presentation.main.MainActivity;
 import com.leap.mini.util.DialogUtil;
 import com.leap.mini.util.IsEmpty;
