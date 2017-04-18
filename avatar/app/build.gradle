@@ -13,6 +13,9 @@ android {
         buildConfigField("String", "SERVER_URL", System.getenv("SERVER_URL") ?: "\"https://auth-test.1000sails.com/dpos-auth-web/s/\"")
         buildConfigField("String", "AGREEMENT_URL", System.getenv("AGREEMENT_URL") ?: "\"http://www.1000sails.com/test/resources/agreement_m.html\"")
         buildConfigField("String", "UPDATE_URL", "\"https://app-publisher.1000sails.com:8310/app-publisher-web/s/\"")
+        buildConfigField("String", "LOG_URL", System.getenv("LOG_URL") ?: "\"https://logstash-test.1000sails.com:8905\"")
+        buildConfigField("String", "LOG_NAME", System.getenv("LOG_NAME") ?: "\"logstash\"")
+        buildConfigField("String", "LOG_PASSWORD", System.getenv("LOG_PASSWORD") ?: "\"aoDJ0JVgkfNPjarn\"")
     }
     buildTypes {
         release {

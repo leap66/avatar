@@ -1,7 +1,7 @@
 package com.leap.mini.mgr.log;
 
-import android.content.Context;
 import android.os.Process;
+import android.util.Log;
 
 /**
  * 页面描述：崩溃时自动捕获崩溃信息
@@ -10,7 +10,6 @@ import android.os.Process;
  */
 public final class CrashHandler implements Thread.UncaughtExceptionHandler {
   private static CrashHandler instance = new CrashHandler();
-  private Logger logger = new Logger();
 
   private CrashHandler() {
   }
@@ -19,7 +18,7 @@ public final class CrashHandler implements Thread.UncaughtExceptionHandler {
     return instance;
   }
 
-  public void init(Context context) {
+  public void init() {
     Thread.setDefaultUncaughtExceptionHandler(this);
   }
 
@@ -33,7 +32,8 @@ public final class CrashHandler implements Thread.UncaughtExceptionHandler {
    */
   @Override
   public void uncaughtException(Thread thread, Throwable throwable) {
-    logger.error(thread, throwable, true);
+    Logger.error(thread, throwable, true);
+    Log.e(throwable.getMessage(), "crash", throwable);
     Process.killProcess(Process.myPid());
   }
 }
