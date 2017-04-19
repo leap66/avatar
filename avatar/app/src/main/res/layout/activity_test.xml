@@ -5,7 +5,7 @@
 
         <variable
             name="presenter"
-            type="com.leap.avatar.presentation.main.MainActivity.Presenter" />
+            type="com.leap.avatar.presentation.test.TestActivity.Presenter" />
     </data>
 
     <LinearLayout
@@ -34,7 +34,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/main_title"
+                android:text="@string/main_test"
                 android:textColor="@color/black"
                 android:textSize="@dimen/small_title" />
 
@@ -58,14 +58,30 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_height"
+                    android:background="@drawable/bg_key"
+                    android:gravity="center"
+                    android:onClick="@{()->presenter.onFrame()}"
+                    android:text="@string/main_frame_test" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/default_height"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bg_toast"
                     android:gravity="center"
-                    android:onClick="@{()->presenter.onTest()}"
+                    android:onClick="@{()->presenter.onFunction()}"
                     android:text="@string/main_function_test" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_height"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_key"
+                    android:gravity="center"
+                    android:onClick="@{()->presenter.onRecreation()}"
+                    android:text="@string/main_recreation_test" />
             </LinearLayout>
 
         </ScrollView>

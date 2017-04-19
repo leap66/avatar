@@ -1,7 +1,7 @@
 package com.leap.avatar.net.update;
 
 import com.leap.mini.net.network.subscriber.Response;
-import com.leap.avatar.model.update.UpdateModel;
+import com.leap.mini.model.UpdateModel;
 
 import retrofit2.http.GET;
 import retrofit2.http.POST;

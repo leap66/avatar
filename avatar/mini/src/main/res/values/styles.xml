@@ -2,9 +2,9 @@
 
     <!-- 自定义APP主题 -->
     <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/theme</item>
-        <item name="colorPrimaryDark">@color/theme</item>
-        <item name="colorAccent">@color/theme_deep</item>
+        <item name="colorPrimary">@color/link</item>
+        <item name="colorPrimaryDark">@color/link</item>
+        <item name="colorAccent">@color/link</item>
         <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
     </style>
 

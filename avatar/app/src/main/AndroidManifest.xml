@@ -24,6 +24,11 @@
         <activity android:name=".presentation.main.MainActivity" />
         <activity android:name=".presentation.auth.RegisterActivity" />
         <activity android:name=".presentation.auth.AgreementActivity" />
+        <activity android:name=".presentation.test.TestActivity" />
+        <activity android:name=".presentation.test.FrameActivity" />
+        <activity android:name=".presentation.test.FunctionActivity" />
+        <activity android:name=".presentation.test.RecreationActivity" />
+        <activity android:name=".presentation.test.PullActivity" />
     </application>
 
 </manifest>

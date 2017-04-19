@@ -1,9 +1,8 @@
-package com.leap.avatar.presentation.main;
+package com.leap.avatar.presentation.test;
 
 import com.leap.avatar.R;
-import com.leap.avatar.databinding.ActivityMainBinding;
+import com.leap.avatar.databinding.ActivityTestRecreationBinding;
 import com.leap.avatar.presentation.base.BaseActivity;
-import com.leap.avatar.presentation.test.TestActivity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -15,12 +14,12 @@ import android.os.Bundle;
  * </> Created by weiyaling on 2017/3/7.
  */
 
-public class MainActivity extends BaseActivity {
-  private ActivityMainBinding binding;
+public class RecreationActivity extends BaseActivity {
+  private ActivityTestRecreationBinding binding;
 
   @Override
   protected void initComponent() {
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_test_recreation);
     binding.setPresenter(new Presenter());
   }
 
@@ -35,8 +34,16 @@ public class MainActivity extends BaseActivity {
       finish();
     }
 
-    public void onTest() {
+    public void onFrame() {
+      finish();
+    }
+
+    public void onFunction() {
       startActivity(TestActivity.class);
+    }
+
+    public void onRecreation() {
+      finish();
     }
   }
 

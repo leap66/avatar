@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
+            name="adapter"
+            type="android.support.v7.widget.RecyclerView.Adapter" />
+
+        <variable
             name="presenter"
-            type="com.leap.avatar.presentation.main.MainActivity.Presenter" />
+            type="com.leap.avatar.presentation.test.PullActivity.Presenter" />
     </data>
 
     <LinearLayout
-        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/title_ll"
             android:layout_width="match_parent"
             android:layout_height="@dimen/title_bar_height"
             android:background="@color/white">
@@ -34,7 +37,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/main_title"
+                android:text="@string/main_frame_pull"
                 android:textColor="@color/black"
                 android:textSize="@dimen/small_title" />
 
@@ -45,30 +48,18 @@
 
         <View style="@style/divider_line" />
 
-        <ScrollView
+        <com.leap.mini.widget.pullrefresh.DefaultRefreshLayout
+            android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:overScrollMode="always">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/default_height"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_toast"
-                    android:gravity="center"
-                    android:onClick="@{()->presenter.onTest()}"
-                    android:text="@string/main_function_test" />
-            </LinearLayout>
-
-        </ScrollView>
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                app:adapter="@{adapter}"
+                app:layoutManager="LinearLayoutManager" />
+        </com.leap.mini.widget.pullrefresh.DefaultRefreshLayout>
     </LinearLayout>
 
 </layout>

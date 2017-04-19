@@ -20,7 +20,6 @@ public class DialogUtil {
     SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
     dialog.setTitleText(context.getResources().getString(R.string.load_data));
     dialog.getProgressHelper().setBarColor(ContextCompat.getColor(context, R.color.theme_opaque));// colorPrimary
-    dialog.setCancelable(false);
     return dialog;
   }
 

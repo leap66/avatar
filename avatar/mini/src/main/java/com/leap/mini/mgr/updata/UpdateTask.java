@@ -1,4 +1,4 @@
-package com.leap.mini.mgr.update;
+package com.leap.mini.mgr.updata;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,14 +14,6 @@ import android.os.PowerManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-/**
- * 异步任务下载任务类
- * <p>
- * </> Created by weiyaling on 17/3/7.
- */
-
-// 一般我们把AsyncTask的子类定义在Activity的内部
-// 通过这种方式，我们就可以轻松地在这里更改UI线程
 public class UpdateTask extends AsyncTask<String, Integer, String> {
   private Context context;
   private PowerManager.WakeLock mWakeLock;
@@ -59,21 +51,18 @@ public class UpdateTask extends AsyncTask<String, Integer, String> {
       // 如果下载位置大于0，设置从上次下载的位置开始传送
       if (position > 0) {
         connection.setRequestProperty("User-Agent", "NetFox");
-        connection.setRequestProperty("RANGE", "bytes=" + position);
+        // connection.setRequestProperty("RANGE", "bytes=" + position);
+        connection.setRequestProperty("Range", "bytes=" + position + "-");
       }
       connection.connect();
 
-      // 避免因为接收到非HTTP 200 OK状态，而导致只或者错误代码，而不是要下载的文件
-      if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+      int respCode = connection.getResponseCode();
+      if (respCode < 200 || respCode >= 300) {
         return "Server returned HTTP " + connection.getResponseCode() + " "
             + connection.getResponseMessage();
       }
-
-      // 这对显示下载百分比有帮助
       // 当服务器没有返回文件的大小时，数字可能为-1
       long fileLength = position + connection.getContentLength();
-
-      // 下载文件
       input = connection.getInputStream();
 
       File file = new File(filePath);
@@ -82,7 +71,7 @@ public class UpdateTask extends AsyncTask<String, Integer, String> {
         file.createNewFile();
       }
 
-      output = new FileOutputStream(file);
+      output = new FileOutputStream(file, true);
       filePath = file.getAbsolutePath();
       byte data[] = new byte[4096];
       long total = position;
@@ -143,10 +132,17 @@ public class UpdateTask extends AsyncTask<String, Integer, String> {
   @Override
   protected void onPostExecute(String result) {
     mWakeLock.release();
-    if (result != null && errorListener != null) {
-      errorListener.onError(result);
-    } else if (successListener != null) {
-      successListener.onSuccess(filePath);
+    if (result != null) {
+      if (errorListener != null) {
+        errorListener.onError(result);
+      } else {
+        // ToastUtil.toastFailure(context,
+        // String.format(context.getString(R.string.update_error), result));
+      }
+    } else {
+      if (successListener != null) {
+        successListener.onSuccess(filePath);
+      }
     }
   }
 

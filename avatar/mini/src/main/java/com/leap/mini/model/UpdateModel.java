@@ -1,4 +1,4 @@
-package com.leap.avatar.model.update;
+package com.leap.mini.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
