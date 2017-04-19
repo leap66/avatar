@@ -1,4 +1,4 @@
-package com.leap.mini.mgr.log;
+package com.leap.mini.mgr.logger;
 
 import android.os.Process;
 import android.util.Log;
@@ -32,8 +32,8 @@ public final class CrashHandler implements Thread.UncaughtExceptionHandler {
    */
   @Override
   public void uncaughtException(Thread thread, Throwable throwable) {
-    Logger.error(thread, throwable, true);
     Log.e(throwable.getMessage(), "crash", throwable);
+    // Logger.error(thread, throwable, true);
     Process.killProcess(Process.myPid());
   }
 }

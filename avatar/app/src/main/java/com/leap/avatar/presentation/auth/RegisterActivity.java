@@ -53,29 +53,29 @@ public class RegisterActivity extends BaseActivity {
     FieldValidateError repeatPasswordError = binding.repeatPasswordEt.validateEditText();
     FieldValidateError codeError = binding.codeEt.validateEditText();
     if (!IsEmpty.object(phoneError)) {
-      ToastUtil.toastFailure(this, phoneError.getErrorMessage());
+      ToastUtil.showFailure(this, phoneError.getErrorMessage());
       return false;
     } else if (!IsEmpty.object(nameError)) {
-      ToastUtil.toastFailure(this, nameError.getErrorMessage());
+      ToastUtil.showFailure(this, nameError.getErrorMessage());
       return false;
     } else if (!IsEmpty.object(passwordError)) {
-      ToastUtil.toastFailure(this, passwordError.getErrorMessage());
+      ToastUtil.showFailure(this, passwordError.getErrorMessage());
       return false;
     } else if (!IsEmpty.object(repeatPasswordError)) {
-      ToastUtil.toastFailure(this, repeatPasswordError.getErrorMessage());
+      ToastUtil.showFailure(this, repeatPasswordError.getErrorMessage());
       return false;
     } else if (!IsEmpty.object(codeError)) {
-      ToastUtil.toastFailure(this, codeError.getErrorMessage());
+      ToastUtil.showFailure(this, codeError.getErrorMessage());
       return false;
     } else if (!binding.passwordEt.getText().toString()
         .equals(binding.repeatPasswordEt.getText().toString())) {
-      ToastUtil.toastFailure(this, getString(com.leap.mini.R.string.register_pwd_confirm_error));
+      ToastUtil.showFailure(this, getString(com.leap.mini.R.string.register_pwd_confirm_error));
       return false;
     } else if (!binding.agreeCb.isChecked()) {
-      ToastUtil.toastFailure(this, getString(R.string.register_read_agreement));
+      ToastUtil.showFailure(this, getString(R.string.register_read_agreement));
       return false;
     } else if (!StringUtil.isMobileNO(binding.phoneEt.getText().toString().trim())) {
-      ToastUtil.toastFailure(RegisterActivity.this, com.leap.mini.R.string.register_phone_err_msg);
+      ToastUtil.showFailure(RegisterActivity.this, com.leap.mini.R.string.register_phone_err_msg);
       return false;
     } else {
       return true;
@@ -132,7 +132,7 @@ public class RegisterActivity extends BaseActivity {
           }
         });
       } else {
-        ToastUtil.toastFailure(RegisterActivity.this, com.leap.mini.R.string.register_phone_err_msg);
+        ToastUtil.showFailure(RegisterActivity.this, com.leap.mini.R.string.register_phone_err_msg);
       }
     }
 
@@ -154,7 +154,7 @@ public class RegisterActivity extends BaseActivity {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 intent.putExtra("mobile", binding.phoneEt.getText().toString().trim());
                 startActivity(intent);
-                ToastUtil.toastSuccess(RegisterActivity.this, com.leap.mini.R.string.register_success);
+                ToastUtil.showSuccess(RegisterActivity.this, com.leap.mini.R.string.register_success);
                 finish();
               }
             });

@@ -7,7 +7,7 @@ import com.leap.avatar.R;
 import com.leap.avatar.databinding.ActivityTestFrameBinding;
 import com.leap.avatar.mgr.UpdateMgr;
 import com.leap.avatar.presentation.base.BaseActivity;
-import com.leap.mini.mgr.log.Logger;
+import com.leap.mini.mgr.logger.Logger;
 import com.leap.mini.mgr.updata.IUpdateListener;
 import com.leap.mini.util.DialogUtil;
 import com.leap.mini.util.ToastUtil;
@@ -51,7 +51,7 @@ public class FrameActivity extends BaseActivity {
           BuildConfig.VERSION_NAME, new IUpdateListener() {
             @Override
             public void onCancel(int type, String... args) {
-              ToastUtil.toastFailure(context, getString(R.string.update_failure));
+              ToastUtil.showFailure(context, getString(R.string.update_failure));
             }
           });
       UpdateMgr.getInstance().check(context);
@@ -70,7 +70,7 @@ public class FrameActivity extends BaseActivity {
     }
 
     public void onToast() {
-      ToastUtil.toastSuccess(context, "我是一个测试信息100861");
+      ToastUtil.showSuccess(context, "我是一个测试信息100861");
     }
 
     public void onPull() {

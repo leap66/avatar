@@ -156,7 +156,7 @@ public class ResetPwdDialog extends Dialog {
       if (isValid()) {
         RegisterRequest param = getUserData();
         String code = binding.codeEt.getText().toString().trim();
-        ToastUtil.toastFailure(getContext(), com.leap.mini.R.string.login_pwd_reset_failure);
+        ToastUtil.showFailure(getContext(), com.leap.mini.R.string.login_pwd_reset_failure);
         dismiss();
       }
     }
@@ -179,20 +179,20 @@ public class ResetPwdDialog extends Dialog {
     FieldValidateError repeatPasswordError = binding.repeatPasswordEt.validateEditText();
     FieldValidateError codeError = binding.codeEt.validateEditText();
     if (!IsEmpty.object(phoneError)) {
-      ToastUtil.toastFailure(getContext(), phoneError.getErrorMessage());
+      ToastUtil.showFailure(getContext(), phoneError.getErrorMessage());
       return false;
     } else if (!IsEmpty.object(passwordError)) {
-      ToastUtil.toastFailure(getContext(), passwordError.getErrorMessage());
+      ToastUtil.showFailure(getContext(), passwordError.getErrorMessage());
       return false;
     } else if (!IsEmpty.object(repeatPasswordError)) {
-      ToastUtil.toastFailure(getContext(), repeatPasswordError.getErrorMessage());
+      ToastUtil.showFailure(getContext(), repeatPasswordError.getErrorMessage());
       return false;
     } else if (!IsEmpty.object(codeError)) {
-      ToastUtil.toastFailure(getContext(), codeError.getErrorMessage());
+      ToastUtil.showFailure(getContext(), codeError.getErrorMessage());
       return false;
     } else if (!binding.passwordEt.getText().toString()
         .equals(binding.repeatPasswordEt.getText().toString())) {
-      ToastUtil.toastFailure(getContext(),
+      ToastUtil.showFailure(getContext(),
           getContext().getResources().getString(com.leap.mini.R.string.register_pwd_confirm_error));
       return false;
     } else {

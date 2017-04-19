@@ -10,7 +10,9 @@ import com.leap.mini.widget.pullrefresh.base.support.utils.CanPullUtil;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,12 +24,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 /**
  * 定义了下拉刷新和上推加载
- * 
  */
 public class DefaultRefreshLayout extends PullRefreshLayout {
 
@@ -36,6 +39,11 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
   private int headerIndex = -1;
   private int footerIndex = -1;
   private boolean immediately = true;
+  private ProgressBar progressBarRefresh;
+  private TextView loadingRefreshText;
+  private int headerBg = ContextCompat.getColor(getContext(), R.color.white);
+  private int footerBg = ContextCompat.getColor(getContext(), R.color.white);
+  private boolean isRefresh, isLoadMore;
 
   public DefaultRefreshLayout(Context context) {
     this(context, null);
@@ -50,7 +58,6 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
     setChildrenDrawingOrderEnabled(true);
     mCenterViewContainer = new DefaultPullLayout(context);
     addView(mCenterViewContainer);
-
     if (attrs != null) {
       TypedArray array = getContext().obtainStyledAttributes(attrs,
           R.styleable.DefaultRefreshLayout);
@@ -63,7 +70,23 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
     addView((DefaultHeaderView) mHeader);
     mFooter = (DefaultFooterView) LayoutInflater.from(context)
         .inflate(R.layout.widget_pullrefresh_footer, this, false);
+    progressBarRefresh = (ProgressBar) ((DefaultHeaderView) mHeader).findViewById(R.id.refresh_pb);
+    loadingRefreshText = (TextView) ((DefaultHeaderView) mHeader).findViewById(R.id.refresh_tv);
     addView((DefaultFooterView) mFooter);
+  }
+
+  /**
+   * RefreshLayout 停止加载刷新
+   */
+  public void stopLoad(boolean isMore) {
+    if (isRefreshing()) {
+      stopRefresh();
+    }
+    if (isLoading()) {
+      stopLoad();
+    }
+    hideView();
+    setHasFooter(isMore);
   }
 
   @Override
@@ -73,7 +96,7 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
     } else if (child instanceof Loadable) {
       mFooter.setPullRefreshLayout(this);
     } else if (child instanceof DefaultPullLayout || CanPullUtil.getPullAble(child) == null) {
-      // TODO
+      // do nothing
     } else {
       pullable = CanPullUtil.getPullAble(child);
       mPullView = child;
@@ -110,6 +133,22 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
     return ((DefaultFooterView) mFooter).isLoading();
   }
 
+  public void setTextColour(int colour) {
+    loadingRefreshText.setTextColor(colour);
+  }
+
+  public void setPreColour(Drawable drawable) {
+    progressBarRefresh.setIndeterminateDrawable(drawable);
+  }
+
+  public void setHeaderBg(int headerBg) {
+    this.headerBg = headerBg;
+  }
+
+  public void setFooterBg(int footerBg) {
+    this.footerBg = footerBg;
+  }
+
   /**
    * 确保头尾最后画
    */
@@ -140,12 +179,22 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
     if (mHeader != null && y >= 0) {
       boolean intercept = mHeader.onScroll(y);
       if (y != 0) {
+        if (!isRefresh) {
+          setBackgroundColor(headerBg);
+          isLoadMore = false;
+        }
+        isRefresh = true;
         return intercept;
       }
     }
     if (mFooter != null && y <= 0) {
       boolean intercept = mFooter.onScroll(y);
       if (y != 0) {
+        if (!isLoadMore) {
+          setBackgroundColor(footerBg);
+          isRefresh = false;
+        }
+        isLoadMore = true;
         return intercept;
       }
     }
@@ -223,12 +272,12 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
     } else if (mPullView instanceof AbsListView) {
       final AbsListView absListView = (AbsListView) mPullView;
       int count = absListView.getAdapter().getCount();
-      int firstPos = absListView.getFirstVisiblePosition();
-      if (firstPos == 0 && absListView.getChildAt(0).getTop() >= absListView.getPaddingTop()) {
+      int fristPos = absListView.getFirstVisiblePosition();
+      if (fristPos == 0 && absListView.getChildAt(0).getTop() >= absListView.getPaddingTop()) {
         return false;
       }
       int lastPos = absListView.getLastVisiblePosition();
-      return lastPos > 0 && count > 0 && lastPos == count - 1;
+      return (lastPos > 0 && count > 0 && lastPos == count - 1);
     } else if (mPullView instanceof ScrollView) {
       ScrollView scrollView = (ScrollView) mPullView;
       View view = (View) scrollView.getChildAt(scrollView.getChildCount() - 1);
@@ -240,7 +289,7 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
       }
     } else if (mPullView instanceof NestedScrollView) {
       NestedScrollView nestedScrollView = (NestedScrollView) mPullView;
-      View view = nestedScrollView.getChildAt(nestedScrollView.getChildCount() - 1);
+      View view = (View) nestedScrollView.getChildAt(nestedScrollView.getChildCount() - 1);
       if (view != null) {
         int diff = (view.getBottom()
             - (nestedScrollView.getHeight() + nestedScrollView.getScrollY()));

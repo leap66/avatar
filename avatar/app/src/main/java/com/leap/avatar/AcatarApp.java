@@ -3,9 +3,9 @@ package com.leap.avatar;
 import com.leap.avatar.mgr.SessionMgr;
 import com.leap.mini.mgr.StorageMgr;
 import com.leap.mini.mgr.TokenMgr;
-import com.leap.mini.mgr.log.CrashHandler;
-import com.leap.mini.mgr.log.LogStashDescription;
-import com.leap.mini.mgr.log.Logger;
+import com.leap.mini.mgr.logger.CrashHandler;
+import com.leap.mini.mgr.logger.LogStashDescription;
+import com.leap.mini.mgr.logger.Logger;
 import com.leap.mini.net.ApiClient;
 
 import android.support.multidex.MultiDexApplication;

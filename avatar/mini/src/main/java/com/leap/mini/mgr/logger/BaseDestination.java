@@ -1,4 +1,4 @@
-package com.leap.mini.mgr.log;
+package com.leap.mini.mgr.logger;
 
 /**
  * Created by neil on 2017/4/15.

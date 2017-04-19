@@ -136,7 +136,7 @@ public class UpdateTask extends AsyncTask<String, Integer, String> {
       if (errorListener != null) {
         errorListener.onError(result);
       } else {
-        // ToastUtil.toastFailure(context,
+        // ToastUtil.showFailure(context,
         // String.format(context.getString(R.string.update_error), result));
       }
     } else {

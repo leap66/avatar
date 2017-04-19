@@ -12,6 +12,7 @@ import com.leap.avatar.net.auth.usecase.SendSmsCase;
 import com.leap.avatar.presentation.base.BaseActivity;
 import com.leap.mini.net.PureSubscriber;
 import com.leap.mini.net.network.subscriber.Response;
+import com.leap.mini.util.ToastUtil;
 import com.leap.mini.widget.pullrefresh.base.layout.BaseFooterView;
 import com.leap.mini.widget.pullrefresh.base.layout.BaseHeaderView;
 
@@ -32,7 +33,7 @@ public class PullActivity extends BaseActivity {
 
   @Override
   protected void initComponent() {
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_test_frame);
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_test_pull);
     binding.setPresenter(new Presenter());
     stringList = new ArrayList<>();
     loadRecyclerView();
@@ -43,13 +44,13 @@ public class PullActivity extends BaseActivity {
     binding.refreshLayout.setOnRefreshListener(new BaseHeaderView.OnRefreshListener() {
       @Override
       public void onRefresh(BaseHeaderView baseHeaderView) {
-        queryData();
+        queryData(true);
       }
     });
     binding.refreshLayout.setOnLoadListener(new BaseFooterView.OnLoadListener() {
       @Override
       public void onLoad(BaseFooterView baseFooterView) {
-        queryData();
+        queryData(false);
       }
     });
     binding.refreshLayout.startRefresh();
@@ -65,48 +66,46 @@ public class PullActivity extends BaseActivity {
     public void onBack() {
       finish();
     }
+
+    public void onItem(String item) {
+      ToastUtil.showSuccess(PullActivity.this, item);
+    }
   }
 
-  private void queryData() {
-    new SendSmsCase("13900000000").execute(new PureSubscriber() {
+  private void queryData(final boolean isRefresh) {
+    new SendSmsCase("1390000000").execute(new PureSubscriber() {
       @Override
       public void onFailure(String errorMsg, Response response) {
-        for (int i = 0; i < 50; i++) {
+        if (isRefresh) {
+          stringList.clear();
+        }
+        adapter.clear();
+        for (int i = 0; i < 5; i++) {
           stringList.add(UUID.randomUUID().toString());
         }
-        adapter.set(stringList, VIEW_TYPE_LIST);
-        stopLoad(true);
+        adapter.addAll(stringList, VIEW_TYPE_LIST);
+        binding.refreshLayout.stopLoad(true);
       }
 
       @Override
       public void onSuccess(Response response) {
-        for (int i = 0; i < 50; i++) {
+        if (isRefresh) {
+          stringList.clear();
+        }
+        adapter.clear();
+        for (int i = 0; i < 5; i++) {
           stringList.add(UUID.randomUUID().toString());
         }
-        adapter.set(stringList, VIEW_TYPE_LIST);
-        stopLoad(true);
+        adapter.addAll(stringList, VIEW_TYPE_LIST);
+        binding.refreshLayout.stopLoad(true);
       }
     });
   }
 
   private void loadRecyclerView() {
     adapter = new MultiTypeAdapter(this);
-    adapter.add(VIEW_TYPE_LIST, R.layout.item_pull);
+    adapter.addViewTypeToLayoutMap(VIEW_TYPE_LIST, R.layout.item_pull);
     adapter.setPresenter(new Presenter());
     binding.setAdapter(adapter);
-  }
-
-  /**
-   * RefreshLayout 停止加载刷新
-   */
-  private void stopLoad(boolean isMore) {
-    if (binding.refreshLayout.isRefreshing()) {
-      binding.refreshLayout.stopRefresh();
-    }
-    if (binding.refreshLayout.isLoading()) {
-      binding.refreshLayout.stopLoad();
-    }
-    binding.refreshLayout.hideView();
-    binding.refreshLayout.setHasFooter(isMore);
   }
 }

@@ -103,7 +103,7 @@ public abstract class BaseActivity extends AppCompatActivity {
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void handleTokenExpired(AuthEvent event) {
     if (event.type == AuthEvent.TOKEN_EXPIRED) {
-      ToastUtil.toastHint(this, com.leap.mini.R.string.network_request_err_401);
+      ToastUtil.showHint(this, com.leap.mini.R.string.network_request_err_401);
       logout();
     }
   }

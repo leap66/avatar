@@ -57,7 +57,7 @@ class ProgressDialog extends Dialog {
       @Override
       public void onError(Object data) {
         dismiss();
-        ToastUtil.toastFailure(mContext, mContext.getString(R.string.update_failure));
+        ToastUtil.showFailure(mContext, mContext.getString(R.string.update_failure));
         if (listener != null) {
           listener.onCancel(IUpdateListener.UPDATE_CODE_FAIL);
         }

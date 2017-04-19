@@ -76,10 +76,10 @@ public class LoginActivity extends BaseActivity {
     FieldValidateError phoneError = binding.phoneEt.validateEditText();
     FieldValidateError passwordError = binding.passwordEt.validateEditText();
     if (!IsEmpty.object(phoneError)) {
-      ToastUtil.toastFailure(this, phoneError.getErrorMessage());
+      ToastUtil.showFailure(this, phoneError.getErrorMessage());
       return false;
     } else if (!IsEmpty.object(passwordError)) {
-      ToastUtil.toastFailure(this, passwordError.getErrorMessage());
+      ToastUtil.showFailure(this, passwordError.getErrorMessage());
       return false;
     } else {
       return true;

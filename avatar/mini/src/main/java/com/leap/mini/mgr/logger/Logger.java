@@ -1,4 +1,4 @@
-package com.leap.mini.mgr.log;
+package com.leap.mini.mgr.logger;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
