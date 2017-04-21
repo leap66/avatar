@@ -34,16 +34,8 @@ public class FunctionActivity extends BaseActivity {
       finish();
     }
 
-    public void onFrame() {
-      finish();
-    }
-
-    public void onFunction() {
-      startActivity(TestActivity.class);
-    }
-
-    public void onRecreation() {
-      finish();
+    public void onPup() {
+      startActivity(PupActivity.class);
     }
   }
 

@@ -11,4 +11,5 @@
     <string name="main_frame_dialog">弹框</string>
     <string name="main_frame_toast">Toast</string>
     <string name="main_frame_pull">下拉刷新</string>
+    <string name="main_frame_pup">PopupWindow</string>
 </resources>
