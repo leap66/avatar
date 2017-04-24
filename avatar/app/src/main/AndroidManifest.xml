@@ -6,11 +6,16 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:name=".AcatarApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_alipay"
+        android:icon="@mipmap/ic_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/MainTheme">
@@ -25,11 +30,13 @@
         <activity android:name=".presentation.auth.RegisterActivity" />
         <activity android:name=".presentation.auth.AgreementActivity" />
         <activity android:name=".presentation.test.TestActivity" />
-        <activity android:name=".presentation.test.FrameActivity" />
+        <activity android:name=".presentation.frame.FrameActivity" />
         <activity android:name=".presentation.test.FunctionActivity" />
         <activity android:name=".presentation.test.RecreationActivity" />
-        <activity android:name=".presentation.test.PullActivity" />
-        <activity android:name=".presentation.test.PupActivity" />
+        <activity android:name=".presentation.frame.PullActivity" />
+        <activity android:name=".presentation.frame.PupActivity" />
+        <activity android:name=".presentation.frame.QRScannerActivity" />
+        <activity android:name=".presentation.test.TestTestActivity" />
     </application>
 
 </manifest>

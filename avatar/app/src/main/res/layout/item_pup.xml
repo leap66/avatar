@@ -9,7 +9,7 @@
 
         <variable
             name="presenter"
-            type="com.leap.avatar.presentation.test.PupActivity.Presenter" />
+            type="com.leap.avatar.presentation.frame.PupActivity.Presenter" />
     </data>
 
     <LinearLayout

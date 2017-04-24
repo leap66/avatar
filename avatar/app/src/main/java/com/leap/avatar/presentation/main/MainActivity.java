@@ -16,31 +16,31 @@ import android.os.Bundle;
  */
 
 public class MainActivity extends BaseActivity {
-  private ActivityMainBinding binding;
+    private ActivityMainBinding binding;
 
-  @Override
-  protected void initComponent() {
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-    binding.setPresenter(new Presenter());
-  }
-
-  @Override
-  protected void loadData(Bundle savedInstanceState) {
-
-  }
-
-  public class Presenter {
-
-    public void onBack() {
-      finish();
+    @Override
+    protected void initComponent() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setPresenter(new Presenter());
     }
 
-    public void onTest() {
-      startActivity(TestActivity.class);
-    }
-  }
+    @Override
+    protected void loadData(Bundle savedInstanceState) {
 
-  private void startActivity(Class c) {
-    startActivity(new Intent(this, c));
-  }
+    }
+
+    public class Presenter {
+
+        public void onBack() {
+            finish();
+        }
+
+        public void onTest() {
+            startActivity(TestActivity.class);
+        }
+    }
+
+    private void startActivity(Class c) {
+        startActivity(new Intent(this, c));
+    }
 }

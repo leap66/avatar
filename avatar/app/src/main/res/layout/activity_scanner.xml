@@ -4,12 +4,9 @@
     <data>
 
         <variable
-            name="adapter"
-            type="android.support.v7.widget.RecyclerView.Adapter" />
-
-        <variable
             name="presenter"
-            type="com.leap.avatar.presentation.frame.PupActivity.Presenter" />
+            type="com.leap.avatar.presentation.frame.QRScannerActivity.Presenter" />
+
     </data>
 
     <LinearLayout
@@ -18,36 +15,43 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/title_ll"
             android:layout_width="match_parent"
             android:layout_height="@dimen/title_bar_height"
             android:background="@color/white">
 
             <ImageView
-                android:layout_width="46dp"
+                android:layout_width="56dp"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
                 android:onClick="@{()->presenter.onBack()}"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:src="@mipmap/ic_global_back" />
+                android:paddingLeft="17dp"
+                android:paddingRight="17dp"
+                android:src="@mipmap/ic_back_color" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/main_frame_pull"
+                android:text="@string/scanner_title"
                 android:textColor="@color/black"
-                android:textSize="@dimen/small_title" />
+                android:textSize="@dimen/huge_text"
+                android:textStyle="bold" />
 
-            <View
+            <ImageView
                 android:layout_width="56dp"
                 android:layout_height="match_parent"
-                android:onClick="@{()->presenter.onPup()}" />
+                android:contentDescription="@null"
+                android:onClick="@{()->presenter.onToggleFlash()}"
+                android:paddingLeft="17dp"
+                android:paddingRight="17dp"
+                android:src="@mipmap/ic_flash" />
         </LinearLayout>
 
-        <View style="@style/divider_line" />
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
-
 </layout>

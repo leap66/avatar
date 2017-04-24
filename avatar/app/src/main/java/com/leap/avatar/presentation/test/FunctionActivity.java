@@ -3,6 +3,7 @@ package com.leap.avatar.presentation.test;
 import com.leap.avatar.R;
 import com.leap.avatar.databinding.ActivityTestFunctionBinding;
 import com.leap.avatar.presentation.base.BaseActivity;
+import com.leap.avatar.presentation.frame.PupActivity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;

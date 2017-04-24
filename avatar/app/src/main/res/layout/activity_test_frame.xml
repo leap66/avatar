@@ -5,7 +5,7 @@
 
         <variable
             name="presenter"
-            type="com.leap.avatar.presentation.test.FrameActivity.Presenter" />
+            type="com.leap.avatar.presentation.frame.FrameActivity.Presenter" />
     </data>
 
     <LinearLayout
@@ -60,7 +60,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/default_height"
-                    android:background="@drawable/bg_key"
+                    android:background="@drawable/bg_toast"
                     android:gravity="center"
                     android:onClick="@{()->presenter.onUpData()}"
                     android:text="@string/main_frame_updata" />
@@ -78,7 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/default_height"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_key"
+                    android:background="@drawable/bg_toast"
                     android:gravity="center"
                     android:onClick="@{()->presenter.onLogger()}"
                     android:text="@string/main_frame_loggr" />
@@ -96,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/default_height"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_key"
+                    android:background="@drawable/bg_toast"
                     android:gravity="center"
                     android:onClick="@{()->presenter.onToast()}"
                     android:text="@string/main_frame_toast" />
@@ -109,6 +109,15 @@
                     android:gravity="center"
                     android:onClick="@{()->presenter.onPull()}"
                     android:text="@string/main_frame_pull" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_height"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_toast"
+                    android:gravity="center"
+                    android:onClick="@{()->presenter.onScanner()}"
+                    android:text="@string/scanner_title" />
             </LinearLayout>
 
         </ScrollView>

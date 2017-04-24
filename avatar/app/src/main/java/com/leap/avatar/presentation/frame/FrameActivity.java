@@ -1,4 +1,4 @@
-package com.leap.avatar.presentation.test;
+package com.leap.avatar.presentation.frame;
 
 import java.util.List;
 
@@ -75,6 +75,9 @@ public class FrameActivity extends BaseActivity {
 
     public void onPull() {
       startActivity(PullActivity.class);
+    }
+    public void onScanner() {
+      startActivity(QRScannerActivity.class);
     }
   }
 
