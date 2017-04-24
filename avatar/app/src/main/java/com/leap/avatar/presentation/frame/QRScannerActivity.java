@@ -29,7 +29,6 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
 
   public static final String KEY_RESULT = "result";
   public static final int RC_CAMERA = 123;
-  protected int page = 0;
   private ZXingScannerView mScannerView;
 
   @Override
