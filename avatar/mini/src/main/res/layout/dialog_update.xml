@@ -1,115 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/update_dialog_bg">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.leap.mini.mgr.updata.UpdateDialog.Util" />
+
+        <variable
+            name="item"
+            type="com.leap.mini.model.UpdateModel" />
+
+        <variable
+            name="presenter"
+            type="com.leap.mini.mgr.updata.UpdateDialog.Presenter" />
+    </data>
 
     <LinearLayout
-        android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="@drawable/update_dialog_bg"
+        android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
 
-        <TextView
-            android:id="@+id/tv_cancel"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:contentDescription="@null"
+                android:scaleType="fitXY"
+                android:src="@mipmap/update_popup_headerbg" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/update_lab"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="20dp"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/update_cancel"
-            android:textColor="#888"
-            android:textSize="18dp"
-            android:visibility="visible" />
+            android:scrollbars="none">
 
-        <View
-            android:id="@+id/divider_line_view"
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="#ccc" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_update"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/update_download"
-            android:textColor="#fa364e"
-            android:textSize="18dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.format(@string/update_version_lab,item.versionName)}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/small_title" />
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@{item.description}"
+                    android:textColor="@color/text_warm"
+                    android:textSize="@dimen/huge_text" />
 
+            </LinearLayout>
 
-    <View
-        android:id="@+id/divider_line"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_above="@+id/bottom_layout"
-        android:background="#ccc" />
+        </ScrollView>
 
-
-    <ImageView
-        android:id="@+id/iv_icon"
-        android:layout_width="80dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/img_no_photo" />
-
-    <TextView
-        android:id="@+id/tv_title_lab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iv_icon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/update_lab"
-        android:textColor="#000"
-        android:textSize="18dp"
-        android:textStyle="bold" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/divider_line"
-        android:layout_below="@id/tv_title_lab"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:scrollbars="none">
+        <View style="@style/divider_line" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="100dp"
-            android:orientation="vertical">
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
 
             <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:textColor="#666"
-                android:textSize="15dp" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="@{()->presenter.onCancel()}"
+                android:text="@string/update_cancel"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/small_title"
+                android:visibility="@{Util.type(item)?View.GONE:View.VISIBLE}" />
+
+            <View
+                style="@style/divider_line_vertical"
+                android:visibility="@{Util.type(item)?View.GONE:View.VISIBLE}" />
 
             <TextView
-                android:id="@+id/tv_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:textColor="#666"
-                android:textSize="15dp" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="@{()->presenter.onUpData()}"
+                android:text="@string/update_download"
+                android:textColor="@color/theme"
+                android:textSize="@dimen/small_title" />
 
         </LinearLayout>
 
-    </ScrollView>
-
-
-</RelativeLayout>
+    </LinearLayout>
+</layout>

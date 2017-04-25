@@ -20,7 +20,7 @@ import android.support.v4.content.FileProvider;
 
 public class UpdataUtil {
 
-  public static String UPDATE_MODE_BLOCK = "BLOCK";
+  static String UPDATE_MODE_BLOCK = "BLOCK";
   public static String UPDATE_MODE_SILENT = "SILENT";
 
   // 安装apk
@@ -28,7 +28,6 @@ public class UpdataUtil {
     Intent intent = new Intent();
     intent.setAction(Intent.ACTION_VIEW);
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-
       Uri contentUri = FileProvider.getUriForFile(context,
           context.getPackageName() + ".fileProvider", new File(apkPath));
       intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -41,7 +40,6 @@ public class UpdataUtil {
           "application/vnd.android.package-archive");
       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
-
     context.startActivity(intent);
     android.os.Process.killProcess(android.os.Process.myPid());
   }

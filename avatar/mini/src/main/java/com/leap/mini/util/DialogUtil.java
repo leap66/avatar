@@ -24,26 +24,6 @@ public class DialogUtil {
   }
 
   /**
-   * 加载进度对话框
-   */
-  public static SweetAlertDialog getProgressDialog(Context context, int stringResourceId) {
-    SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
-    dialog.setTitleText(context.getResources().getString(stringResourceId));
-    dialog.getProgressHelper().setBarColor(ContextCompat.getColor(context, R.color.theme_opaque));
-    return dialog;
-  }
-
-  /**
-   * 加载进度对话框
-   */
-  public static SweetAlertDialog getProgressDialog(Context context, String string) {
-    SweetAlertDialog dialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
-    dialog.setTitleText(string);
-    dialog.getProgressHelper().setBarColor(ContextCompat.getColor(context, R.color.theme_opaque));
-    return dialog;
-  }
-
-  /**
    * 显示错误对话框
    */
   public static SweetAlertDialog showError(Context context, String string) {

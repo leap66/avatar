@@ -21,4 +21,5 @@ public class UpdateModel implements Serializable {
 
   public boolean already;// 是否准备好
   public long position;// 下载位置
+  public String fileName;// 下载文件名
 }

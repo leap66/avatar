@@ -8,7 +8,6 @@ import com.leap.avatar.databinding.ActivityTestFrameBinding;
 import com.leap.avatar.mgr.UpdateMgr;
 import com.leap.avatar.presentation.base.BaseActivity;
 import com.leap.mini.mgr.logger.Logger;
-import com.leap.mini.mgr.updata.IUpdateListener;
 import com.leap.mini.util.DialogUtil;
 import com.leap.mini.util.ThrottleUtil;
 import com.leap.mini.util.ToastUtil;
@@ -48,14 +47,7 @@ public class FrameActivity extends BaseActivity {
     }
 
     public void onUpData() {
-      UpdateMgr.getInstance().init(BuildConfig.UPDATE_URL, BuildConfig.APPLICATION_ID,
-          BuildConfig.VERSION_NAME, new IUpdateListener() {
-            @Override
-            public void onCancel(int type, String... args) {
-              ToastUtil.showFailure(context, getString(R.string.update_failure));
-            }
-          });
-      UpdateMgr.getInstance().check(context);
+      UpdateMgr.getInstance().checkTask(context);
     }
 
     public void onCrash() {

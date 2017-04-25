@@ -20,54 +20,43 @@ class ProgressDialog extends Dialog {
   private Context mContext;
   private ProgressBar progressBar;
   private TextView tvProgress;
-  private IUpdateListener listener;
 
   ProgressDialog(Context context) {
-    super(context, R.style.FullScreenDialog);
+    super(context, R.style.alert_dialog);
     this.mContext = context;
     initViews();
   }
 
   private void initViews() {
     requestWindowFeature(Window.FEATURE_NO_TITLE);
-    setCanceledOnTouchOutside(false);
     View rootView = LayoutInflater.from(mContext).inflate(R.layout.dialog_update_progress, null,
         false);
-
     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
         SystemUtils.getScreenWidth() * 11 / 15, RelativeLayout.LayoutParams.WRAP_CONTENT);
     setContentView(rootView, params);
-
     progressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
     tvProgress = (TextView) rootView.findViewById(R.id.tv_progress);
   }
 
   @AfterPermissionGranted(11)
-  void downloadApk(String filePath, UpdateModel model) {
-    final UpdateTask updateTask = new UpdateTask(mContext, model.position, progressBar, tvProgress,
+  void downloadApk(UpdateModel model, String filePath) {
+    setCancelable(UpdataUtil.UPDATE_MODE_SILENT.equals(model.updateMode));
+    UpdateTask updateTask = new UpdateTask(mContext, model.position, progressBar, tvProgress,
         filePath);
     updateTask.setSuccessListener(new UpdateTask.OnSuccessListener<String>() {
       @Override
       public void onSuccess(String data) {
-        dismiss();
         UpdataUtil.installApk(getContext(), data);
+        dismiss();
       }
     });
     updateTask.setErrorListener(new UpdateTask.OnErrorListener() {
       @Override
       public void onError(Object data) {
-        dismiss();
         ToastUtil.showFailure(mContext, mContext.getString(R.string.update_failure));
-        if (listener != null) {
-          listener.onCancel(IUpdateListener.UPDATE_CODE_FAIL);
-        }
+        dismiss();
       }
     });
     updateTask.execute(model.downloadUrl);
   }
-
-  void setUpdateListener(IUpdateListener listener) {
-    this.listener = listener;
-  }
-
 }

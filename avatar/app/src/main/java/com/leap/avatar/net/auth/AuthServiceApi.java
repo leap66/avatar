@@ -54,13 +54,13 @@ public interface AuthServiceApi {
   /**
    * 检查短信验证码
    */
-  @POST("app/sms/check")
+  @POST("app/sms/checkTask")
   Observable<Response<Boolean>> checkSms(@Query("mobile") String mobile,
       @Query("code") String code);
 
   /**
    * 检查手机号是否已注册
    */
-  @POST("app/auth/mobilenotexist/check")
+  @POST("app/auth/mobilenotexist/checkTask")
   Observable<Response> checkMobile(@Query("mobile") String mobile);
 }
