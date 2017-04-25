@@ -1,11 +1,10 @@
-package com.leap.avatar.presentation.test;
+package com.leap.avatar.presentation.frame;
 
 import java.util.List;
 
 import com.leap.avatar.R;
 import com.leap.avatar.databinding.ActivityTestTestBinding;
 import com.leap.avatar.presentation.base.BaseActivity;
-import com.leap.avatar.presentation.frame.QRScannerActivity;
 import com.leap.mini.util.IsEmpty;
 import com.leap.mini.util.ToastUtil;
 
@@ -25,7 +24,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * </> Created by weiyaling on 2017/3/7.
  */
 
-public class TestTestActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks {
+public class QRSActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks {
   private static final int SCANNER_REQUEST_CODE = 1;
   private ActivityTestTestBinding binding;
 
@@ -43,7 +42,7 @@ public class TestTestActivity extends BaseActivity implements EasyPermissions.Pe
   @Override
   public void onPermissionsGranted(int requestCode, List<String> perms) {
     if (requestCode == QRScannerActivity.RC_CAMERA) {
-      Intent intent = new Intent(TestTestActivity.this, QRScannerActivity.class);
+      Intent intent = new Intent(QRSActivity.this, QRScannerActivity.class);
       startActivityForResult(intent, SCANNER_REQUEST_CODE);
     }
   }
@@ -51,7 +50,7 @@ public class TestTestActivity extends BaseActivity implements EasyPermissions.Pe
   @Override
   public void onPermissionsDenied(int requestCode, List<String> perms) {
     if (requestCode == QRScannerActivity.RC_CAMERA) {
-      ToastUtil.showFailure(TestTestActivity.this, R.string.permissions_camera);
+      ToastUtil.showFailure(QRSActivity.this, R.string.permissions_camera);
     }
   }
 
@@ -88,13 +87,13 @@ public class TestTestActivity extends BaseActivity implements EasyPermissions.Pe
     public void onTest() {
       String[] permission = {
           Manifest.permission.CAMERA };
-      if (EasyPermissions.hasPermissions(TestTestActivity.this, permission)) {
+      if (EasyPermissions.hasPermissions(QRSActivity.this, permission)) {
         // Already have permission, do the thing
-        Intent intent = new Intent(TestTestActivity.this, QRScannerActivity.class);
+        Intent intent = new Intent(QRSActivity.this, QRScannerActivity.class);
         startActivityForResult(intent, SCANNER_REQUEST_CODE);
       } else {
         // Do not have permissions, request them now
-        EasyPermissions.requestPermissions(TestTestActivity.this,
+        EasyPermissions.requestPermissions(QRSActivity.this,
             getString(R.string.permissions_camera), QRScannerActivity.RC_CAMERA, permission);
       }
     }

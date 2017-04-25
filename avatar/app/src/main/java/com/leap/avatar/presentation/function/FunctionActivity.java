@@ -1,8 +1,9 @@
-package com.leap.avatar.presentation.test;
+package com.leap.avatar.presentation.function;
 
 import com.leap.avatar.R;
-import com.leap.avatar.databinding.ActivityTestRecreationBinding;
+import com.leap.avatar.databinding.ActivityTestFunctionBinding;
 import com.leap.avatar.presentation.base.BaseActivity;
+import com.leap.avatar.presentation.frame.PupActivity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -14,12 +15,12 @@ import android.os.Bundle;
  * </> Created by weiyaling on 2017/3/7.
  */
 
-public class RecreationActivity extends BaseActivity {
-  private ActivityTestRecreationBinding binding;
+public class FunctionActivity extends BaseActivity {
+  private ActivityTestFunctionBinding binding;
 
   @Override
   protected void initComponent() {
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_test_recreation);
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_test_function);
     binding.setPresenter(new Presenter());
   }
 
@@ -34,16 +35,8 @@ public class RecreationActivity extends BaseActivity {
       finish();
     }
 
-    public void onFrame() {
-      finish();
-    }
-
-    public void onFunction() {
-      startActivity(TestActivity.class);
-    }
-
-    public void onRecreation() {
-      finish();
+    public void onPup() {
+      startActivity(PupActivity.class);
     }
   }
 

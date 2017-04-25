@@ -4,6 +4,8 @@ import com.leap.avatar.R;
 import com.leap.avatar.databinding.ActivityTestBinding;
 import com.leap.avatar.presentation.base.BaseActivity;
 import com.leap.avatar.presentation.frame.FrameActivity;
+import com.leap.avatar.presentation.function.FunctionActivity;
+import com.leap.avatar.presentation.recreation.RecreationActivity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;

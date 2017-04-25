@@ -5,7 +5,7 @@
 
         <variable
             name="presenter"
-            type="com.leap.avatar.presentation.test.RecreationActivity.Presenter" />
+            type="com.leap.avatar.presentation.recreation.RecreationActivity.Presenter" />
     </data>
 
     <LinearLayout

@@ -31,12 +31,12 @@
         <activity android:name=".presentation.auth.AgreementActivity" />
         <activity android:name=".presentation.test.TestActivity" />
         <activity android:name=".presentation.frame.FrameActivity" />
-        <activity android:name=".presentation.test.FunctionActivity" />
-        <activity android:name=".presentation.test.RecreationActivity" />
+        <activity android:name=".presentation.function.FunctionActivity" />
+        <activity android:name=".presentation.recreation.RecreationActivity" />
         <activity android:name=".presentation.frame.PullActivity" />
         <activity android:name=".presentation.frame.PupActivity" />
         <activity android:name=".presentation.frame.QRScannerActivity" />
-        <activity android:name=".presentation.test.TestTestActivity" />
+        <activity android:name=".presentation.frame.QRSActivity" />
     </application>
 
 </manifest>

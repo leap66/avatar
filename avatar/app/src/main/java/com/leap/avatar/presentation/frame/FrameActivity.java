@@ -10,6 +10,7 @@ import com.leap.avatar.presentation.base.BaseActivity;
 import com.leap.mini.mgr.logger.Logger;
 import com.leap.mini.mgr.updata.IUpdateListener;
 import com.leap.mini.util.DialogUtil;
+import com.leap.mini.util.ThrottleUtil;
 import com.leap.mini.util.ToastUtil;
 
 import android.content.Context;
@@ -70,12 +71,15 @@ public class FrameActivity extends BaseActivity {
     }
 
     public void onToast() {
+      if (ThrottleUtil.doubleClick())
+        return;
       ToastUtil.showSuccess(context, "我是一个测试信息100861");
     }
 
     public void onPull() {
       startActivity(PullActivity.class);
     }
+
     public void onScanner() {
       startActivity(QRScannerActivity.class);
     }
