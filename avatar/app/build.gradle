@@ -1,5 +1,25 @@
 apply plugin: 'com.android.application'
 
+def gitVersionCode() {
+    def cmd = 'git rev-list HEAD --first-parent --count'
+    cmd.execute().text.trim().toInteger()
+}
+
+def gitVersionName() {
+    def cmd = 'git describe --tags'
+    def version = cmd.execute().text.trim()
+    def pattern = "-(\\d+)-g"
+    def matcher = version =~ pattern
+    if (matcher) {
+        version = version.substring(0, matcher.start()) + "." + matcher[0][1]
+    } else if (version) {
+        version = version + ".0"
+    } else {
+        version = 0.0
+    }
+    return version
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -18,10 +38,47 @@ android {
         buildConfigField("String", "LOG_PASSWORD", System.getenv("LOG_PASSWORD") ?: "\"aoDJ0JVgkfNPjarn\"")
         buildConfigField("String", "TEST_APP_ID", "\"com.qianfan123.minya.debug\"")
     }
+    signingConfigs {
+        config {
+            storeFile file(String.valueOf(System.getenv('storeFile')))
+            storePassword String.valueOf(System.getenv('storePassword'))
+            keyAlias String.valueOf(System.getenv('keyAlias'))
+            keyPassword String.valueOf(System.getenv('keyPassword'))
+            v2SigningEnabled false
+        }
+    }
     buildTypes {
-        release {
+        debug {
+            applicationIdSuffix ".debug"
+            manifestPlaceholders = [app_name: "Test-测试"]
             minifyEnabled false
+        }
+        release {
+            signingConfig signingConfigs.config
+            minifyEnabled true
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    applicationVariants.all { variant ->
+        def versionCode = gitVersionCode()
+        def versionName = variant.buildType.name + "." + versionCode
+        if (variant.buildType.name == "release") {
+            versionName = gitVersionName()
+        }
+        variant.mergedFlavor.versionCode = versionCode
+        variant.mergedFlavor.versionName = versionName
+
+
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName = "avatar-${variant.buildType.name}-${versionName}-${versionCode}.apk"
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
         }
     }
     dataBinding {
