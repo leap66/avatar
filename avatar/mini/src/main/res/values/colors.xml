@@ -33,4 +33,29 @@
     <color name="success_stroke_color">#A5DC86</color>
     <color name="sweet_dialog_bg_color">#FFFFFF</color>
     <color name="trans_success_stroke_color">#33A5DC86</color>
+
+
+    <!-- 统一颜色设置规范 -->
+    <color name="silver">#c5c9d4</color>
+    <color name="silver_two">#d1d4dd</color>
+    <color name="pale_grey">#dcdee5</color>
+    <color name="pale_grey_two">#e8e9ee</color>
+    <color name="pale_grey_three">#f0f1f4</color>
+    <color name="pale_grey_four">#f4f5f7</color>
+
+    <color name="dark">#292c40</color>
+    <color name="battleship_grey">#6a6e79</color>
+    <color name="cool_grey">#a3a6b2</color>
+
+    <color name="coral">#fb4e3c</color>
+    <color name="warm_pink">#f35268</color>
+    <color name="orange_pink">#fe6f60</color>
+    <color name="light_indigo">#9058d4</color>
+    <color name="dark_periwinkle">#736dd8</color>
+    <color name="soft_blue">#6181e6</color>
+    <color name="mango">#fba038</color>
+    <color name="tealish">#1fc6af</color>
+    <color name="black_65">#a6333333</color>
+
+    <color name="btn_select">#60dcdee5</color>
 </resources>

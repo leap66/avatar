@@ -48,6 +48,18 @@
 
         <View style="@style/divider_line" />
 
+
+        <com.leap.mini.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@null"
+            android:padding="6dp"
+            app:hint="@string/login_phone_hint"
+            app:limit="15" />
+
+        <View style="@style/divider_line" />
+
         <com.leap.mini.widget.pullrefresh.DefaultRefreshLayout
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"

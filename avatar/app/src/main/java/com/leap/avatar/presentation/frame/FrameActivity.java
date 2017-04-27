@@ -1,8 +1,9 @@
 package com.leap.avatar.presentation.frame;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import com.leap.avatar.BuildConfig;
+import com.jakewharton.rxbinding.view.RxView;
 import com.leap.avatar.R;
 import com.leap.avatar.databinding.ActivityTestFrameBinding;
 import com.leap.avatar.mgr.UpdateMgr;
@@ -16,6 +17,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.view.View;
+
+import rx.functions.Action1;
 
 /**
  * 主界面
@@ -62,10 +66,13 @@ public class FrameActivity extends BaseActivity {
       DialogUtil.getProgressDialog(context).show();
     }
 
-    public void onToast() {
-      if (ThrottleUtil.doubleClick())
-        return;
-      ToastUtil.showSuccess(context, "我是一个测试信息100861");
+    public void onToast(View view) {
+      RxView.clicks(view).throttleFirst(5, TimeUnit.SECONDS).subscribe(new Action1<Void>() {
+        @Override
+        public void call(Void aVoid) {
+          ToastUtil.showSuccess(context, "我是一个测试信息100861");
+        }
+      });
     }
 
     public void onPull() {
