@@ -10,7 +10,6 @@ import com.leap.avatar.mgr.UpdateMgr;
 import com.leap.avatar.presentation.base.BaseActivity;
 import com.leap.mini.mgr.logger.Logger;
 import com.leap.mini.util.DialogUtil;
-import com.leap.mini.util.ThrottleUtil;
 import com.leap.mini.util.ToastUtil;
 
 import android.content.Context;
@@ -67,12 +66,13 @@ public class FrameActivity extends BaseActivity {
     }
 
     public void onToast(View view) {
-      RxView.clicks(view).throttleFirst(5, TimeUnit.SECONDS).subscribe(new Action1<Void>() {
-        @Override
-        public void call(Void aVoid) {
-          ToastUtil.showSuccess(context, "我是一个测试信息100861");
-        }
-      });
+      RxView.clicks(binding.toastTv).throttleFirst(3, TimeUnit.SECONDS)
+              .subscribe(new Action1<Void>() {
+                @Override
+                public void call(Void aVoid) {
+                  ToastUtil.showSuccess(context, "我是一个测试信息100861");
+                }
+              });
     }
 
     public void onPull() {
