@@ -11,6 +11,7 @@ import com.leap.avatar.databinding.ActivityThrottleBinding;
 import com.leap.avatar.presentation.base.BaseActivity;
 import com.leap.mini.util.ThrottleUtil;
 import com.leap.mini.util.ToastUtil;
+import com.leap.mini.widget.SearchBar;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -53,13 +54,12 @@ public class ThrottleActivity extends BaseActivity {
         ToastUtil.showSuccess(context, getString(R.string.main_test_test));
       }
     });
-    ThrottleUtil.textChanges(binding.searchView.getClearEditText())
-        .subscribe(new Action1<CharSequence>() {
-          @Override
-          public void call(CharSequence charSequence) {
-            queryData();
-          }
-        });
+    binding.searchBar.setOnSearchListener(new SearchBar.OnSearchListener<View, String>() {
+      @Override
+      public void onSearch(View view, String data) {
+        queryData();
+      }
+    });
   }
 
   private void queryData() {

@@ -39,10 +39,4 @@
         <attr name="pivotX" format="fraction" />
         <attr name="pivotY" format="fraction" />
     </declare-styleable>
-
-    <!--搜索View-->
-    <declare-styleable name="searchView">
-        <attr name="hint" format="string"/>
-        <attr name="limit" format="integer"/>
-    </declare-styleable>
 </resources>
