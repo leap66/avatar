@@ -7,8 +7,11 @@ import com.leap.mini.mgr.logger.CrashHandler;
 import com.leap.mini.mgr.logger.LogStashDescription;
 import com.leap.mini.mgr.logger.Logger;
 import com.leap.mini.net.ApiClient;
+import com.leap.mini.util.listener.ActivityLifecycleListener;
 
+import android.app.Activity;
 import android.support.multidex.MultiDexApplication;
+import android.util.Log;
 
 /**
  * Application
@@ -17,6 +20,7 @@ import android.support.multidex.MultiDexApplication;
  */
 
 public class AcatarApp extends MultiDexApplication {
+  private boolean isBackground = true;
 
   @Override
   public void onCreate() {
@@ -32,6 +36,35 @@ public class AcatarApp extends MultiDexApplication {
     Logger.addDestination(description);
     description.sendNow();
     CrashHandler.getInstance().init();
+    listenForForeground();
+  }
 
+  private void listenForForeground() {
+    registerActivityLifecycleCallbacks(new ActivityLifecycleListener() {
+      @Override
+      public void onActivityResumed(Activity activity) {
+        if (isBackground) {
+          isBackground = false;
+          notifyForeground();
+        }
+      }
+    });
+  }
+
+  private void notifyForeground() {
+    Log.e("listenForForeground: ", "notifyForeground");
+  }
+
+  private void notifyBackground() {
+    Log.e("listenForForeground: ", "notifyBackground");
+  }
+
+  @Override
+  public void onTrimMemory(int level) {
+    super.onTrimMemory(level);
+    if (level == TRIM_MEMORY_UI_HIDDEN) {
+      isBackground = true;
+      notifyBackground();
+    }
   }
 }

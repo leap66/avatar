@@ -102,6 +102,10 @@ public class SearchView extends LinearLayout {
 
   public String getText() {
     return clearEditText.getText().toString().trim();
+  };
+
+  public ClearEditText getClearEditText() {
+    return clearEditText;
   }
 
   public interface OnSearchListener<V, T> {

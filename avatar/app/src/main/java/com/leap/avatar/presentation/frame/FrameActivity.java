@@ -1,22 +1,20 @@
 package com.leap.avatar.presentation.frame;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import com.jakewharton.rxbinding.view.RxView;
 import com.leap.avatar.R;
 import com.leap.avatar.databinding.ActivityTestFrameBinding;
 import com.leap.avatar.mgr.UpdateMgr;
 import com.leap.avatar.presentation.base.BaseActivity;
 import com.leap.mini.mgr.logger.Logger;
 import com.leap.mini.util.DialogUtil;
+import com.leap.mini.util.ThrottleUtil;
 import com.leap.mini.util.ToastUtil;
 
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.view.View;
 
 import rx.functions.Action1;
 
@@ -40,7 +38,16 @@ public class FrameActivity extends BaseActivity {
 
   @Override
   protected void loadData(Bundle savedInstanceState) {
+  }
 
+  @Override
+  protected void createEventHandlers() {
+    ThrottleUtil.clicks(binding.toastTv).subscribe(new Action1<Void>() {
+      @Override
+      public void call(Void aVoid) {
+        ToastUtil.showSuccess(context, "我是一个测试信息100861");
+      }
+    });
   }
 
   public class Presenter {
@@ -63,16 +70,6 @@ public class FrameActivity extends BaseActivity {
 
     public void onDialog() {
       DialogUtil.getProgressDialog(context).show();
-    }
-
-    public void onToast(View view) {
-      RxView.clicks(binding.toastTv).throttleFirst(3, TimeUnit.SECONDS)
-              .subscribe(new Action1<Void>() {
-                @Override
-                public void call(Void aVoid) {
-                  ToastUtil.showSuccess(context, "我是一个测试信息100861");
-                }
-              });
     }
 
     public void onPull() {
