@@ -9,6 +9,10 @@
             type="android.support.v7.widget.RecyclerView.Adapter" />
 
         <variable
+            name="shop"
+            type="com.leap.avatar.model.shop.BShop" />
+
+        <variable
             name="view"
             type="android.view.View" />
 
@@ -75,14 +79,13 @@
                     android:text="@string/main_test" />
 
                 <TextView
-                    android:id="@+id/toast_tv1"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/default_height"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bg_toast"
                     android:gravity="center"
-                    android:onClick="@{(view)->presenter.onToast(view)}"
-                    android:text="@string/main_frame_toast" />
+                    android:text="@string/main_frame_toast"
+                    app:throttleClick='@{()->presenter.onToast(shop)}' />
 
                 <com.leap.mini.widget.SearchBar
                     android:id="@+id/search_bar"

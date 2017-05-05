@@ -8,6 +8,9 @@ import com.github.markzhai.recyclerview.BaseViewAdapter;
 import com.github.markzhai.recyclerview.SingleTypeAdapter;
 import com.leap.avatar.R;
 import com.leap.avatar.databinding.ActivityThrottleBinding;
+import com.leap.avatar.model.entity.BRegion;
+import com.leap.avatar.model.shop.BShop;
+import com.leap.avatar.model.shop.BShopAddress;
 import com.leap.avatar.presentation.base.BaseActivity;
 import com.leap.mini.util.ThrottleUtil;
 import com.leap.mini.util.ToastUtil;
@@ -28,7 +31,7 @@ import rx.functions.Action1;
 
 public class ThrottleActivity extends BaseActivity {
   private ActivityThrottleBinding binding;
-  private List<String> stringList;
+  private List<BShop> stringList;
   private int i;
   private SingleTypeAdapter adapter;
   private Context context;
@@ -38,6 +41,12 @@ public class ThrottleActivity extends BaseActivity {
     binding = DataBindingUtil.setContentView(this, R.layout.activity_throttle);
     binding.setPresenter(new Presenter());
     context = this;
+    BShop shop = new BShop();
+    shop.setName("");
+    BShopAddress shopAddress = new BShopAddress();
+    shopAddress.setCity(new BRegion("gfahgah", "109346jsfh"));
+    shop.setShopAddress(shopAddress);
+    binding.setShop(shop);
     stringList = new ArrayList<>();
     loadRecycleView();
   }
@@ -66,7 +75,12 @@ public class ThrottleActivity extends BaseActivity {
     i++;
     stringList.clear();
     for (int j = 0; j < i; j++) {
-      stringList.add(UUID.randomUUID().toString() + i);
+      BShop shop = new BShop();
+      shop.setName("");
+      BShopAddress shopAddress = new BShopAddress();
+      shopAddress.setCity(new BRegion("gfahgah", UUID.randomUUID().toString() + i));
+      shop.setShopAddress(shopAddress);
+      stringList.add(shop);
     }
     adapter.set(stringList);
   }
@@ -83,17 +97,12 @@ public class ThrottleActivity extends BaseActivity {
       finish();
     }
 
-    public void onToast(View view) {
-      ThrottleUtil.clicks(view).subscribe(new Action1<Void>() {
-        @Override
-        public void call(Void aVoid) {
-          ToastUtil.showSuccess(context, getString(R.string.main_test_test));
-        }
-      });
+    public void onToast(BShop shop) {
+      ToastUtil.showSuccess(context, shop.getShopAddress().getCity().getText());
     }
 
-    public void onItem(String s) {
-      ToastUtil.showSuccess(context, s);
+    public void onItem(BShop shop) {
+      ToastUtil.showSuccess(context, shop.getShopAddress().getCity().getText());
     }
   }
 }

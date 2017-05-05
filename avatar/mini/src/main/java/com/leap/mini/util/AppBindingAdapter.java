@@ -1,13 +1,19 @@
 package com.leap.mini.util;
 
+import java.util.concurrent.TimeUnit;
+
 import com.bumptech.glide.Glide;
+import com.jakewharton.rxbinding.view.RxView;
 import com.leap.mini.R;
 
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import rx.functions.Action1;
 
 /**
  * 数据绑定的adapter 用于处理自定义的xml中的属性操作
@@ -53,5 +59,29 @@ public class AppBindingAdapter {
   public static void setTextDynamicColor(TextView view, int resourceId) {
     Log.d("hello", resourceId + "");
     // Glide.with(view.getContext()).load(resourceId).into(view);
+  }
+
+  /**
+   * 注意，单独设置 throttleTime 是没有意义的
+   */
+  @BindingAdapter(value = {
+      "throttleClick", "throttleTime" }, requireAll = false)
+  public static void throttleClick(final View view, final View.OnClickListener clickListener,
+      Integer throttleTime) {
+    // 如果没有设置 throttleTime， 默认间隔为 defaultTime
+    int defaultTime = 5;
+    if (throttleTime != null) {
+      defaultTime = throttleTime;
+    }
+    // 如果只设置了 throttleTime, clickListener 为 null
+    if (clickListener != null) {
+      RxView.clicks(view).throttleFirst(defaultTime, TimeUnit.SECONDS)
+          .subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+              clickListener.onClick(view);
+            }
+          });
+    }
   }
 }
