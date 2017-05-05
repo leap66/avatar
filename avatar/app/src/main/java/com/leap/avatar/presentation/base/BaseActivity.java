@@ -23,7 +23,7 @@ import android.widget.EditText;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
-  private boolean isAutomaticHide = false;
+  private boolean isAutomaticHide = true;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
