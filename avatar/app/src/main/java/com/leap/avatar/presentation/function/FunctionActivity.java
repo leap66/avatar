@@ -38,6 +38,10 @@ public class FunctionActivity extends BaseActivity {
     public void onPup() {
       startActivity(PupActivity.class);
     }
+
+    public void onThrottle() {
+      startActivity(ThrottleActivity.class);
+    }
   }
 
   private void startActivity(Class c) {

@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
+            name="adapter"
+            type="android.support.v7.widget.RecyclerView.Adapter" />
+
+        <variable
+            name="shop"
+            type="com.leap.avatar.model.shop.BShop" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
+
+        <variable
             name="presenter"
-            type="com.leap.avatar.presentation.function.FunctionActivity.Presenter" />
+            type="com.leap.avatar.presentation.function.ThrottleActivity.Presenter" />
     </data>
 
     <LinearLayout
@@ -34,7 +47,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/main_function_test"
+                android:text="@string/main_search_delay"
                 android:textColor="@color/black"
                 android:textSize="@dimen/small_title" />
 
@@ -58,21 +71,40 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/toast_tv"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/default_height"
                     android:background="@drawable/bg_key"
                     android:gravity="center"
-                    android:onClick="@{()->presenter.onPup()}"
-                    android:text="@string/main_frame_pup" />
+                    android:text="@string/main_test" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/default_height"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_key"
+                    android:background="@drawable/bg_toast"
                     android:gravity="center"
-                    android:onClick="@{()->presenter.onThrottle()}"
-                    android:text="@string/main_search_delay" />
+                    android:text="@string/main_frame_toast"
+                    app:throttleClick='@{()->presenter.onToast(shop)}' />
+
+                <com.leap.mini.widget.SearchBar
+                    android:id="@+id/search_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="6dp"
+                    app:auto_search="true"
+                    app:hint="@string/login_phone_hint"
+                    app:limit="15" />
+
+                <View style="@style/divider_line" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:adapter="@{adapter}"
+                    app:layoutManager="LinearLayoutManager" />
             </LinearLayout>
 
         </ScrollView>

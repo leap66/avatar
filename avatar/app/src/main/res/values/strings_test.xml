@@ -11,7 +11,9 @@
     <string name="main_frame_dialog">弹框</string>
     <string name="main_frame_toast">Toast</string>
     <string name="main_frame_pull">下拉刷新</string>
-    <string name="main_frame_pup">PopupWindow</string>permissions_camera
+    <string name="main_frame_pup">PopupWindow</string>
+    <string name="main_search_delay">延迟搜索</string>
     <string name="scanner_title">扫描</string>
     <string name="permissions_camera">请允许手机拍照权限</string>
+    <string name="main_test_test">我是一个测试信息100861</string>
 </resources>

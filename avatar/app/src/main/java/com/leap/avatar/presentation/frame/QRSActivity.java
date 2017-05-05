@@ -3,7 +3,7 @@ package com.leap.avatar.presentation.frame;
 import java.util.List;
 
 import com.leap.avatar.R;
-import com.leap.avatar.databinding.ActivityTestTestBinding;
+import com.leap.avatar.databinding.ActivityScannerFrontBinding;
 import com.leap.avatar.presentation.base.BaseActivity;
 import com.leap.mini.util.IsEmpty;
 import com.leap.mini.util.ToastUtil;
@@ -26,11 +26,11 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class QRSActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks {
   private static final int SCANNER_REQUEST_CODE = 1;
-  private ActivityTestTestBinding binding;
+  private ActivityScannerFrontBinding binding;
 
   @Override
   protected void initComponent() {
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_test_test);
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_scanner_front);
     binding.setPresenter(new Presenter());
   }
 
@@ -93,8 +93,8 @@ public class QRSActivity extends BaseActivity implements EasyPermissions.Permiss
         startActivityForResult(intent, SCANNER_REQUEST_CODE);
       } else {
         // Do not have permissions, request them now
-        EasyPermissions.requestPermissions(QRSActivity.this,
-            getString(R.string.permissions_camera), QRScannerActivity.RC_CAMERA, permission);
+        EasyPermissions.requestPermissions(QRSActivity.this, getString(R.string.permissions_camera),
+            QRScannerActivity.RC_CAMERA, permission);
       }
     }
   }

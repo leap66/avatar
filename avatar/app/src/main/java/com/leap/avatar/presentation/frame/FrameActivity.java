@@ -2,7 +2,6 @@ package com.leap.avatar.presentation.frame;
 
 import java.util.List;
 
-import com.leap.avatar.BuildConfig;
 import com.leap.avatar.R;
 import com.leap.avatar.databinding.ActivityTestFrameBinding;
 import com.leap.avatar.mgr.UpdateMgr;
@@ -16,6 +15,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+
+import rx.functions.Action1;
 
 /**
  * 主界面
@@ -37,7 +38,16 @@ public class FrameActivity extends BaseActivity {
 
   @Override
   protected void loadData(Bundle savedInstanceState) {
+  }
 
+  @Override
+  protected void createEventHandlers() {
+    ThrottleUtil.clicks(binding.toastTv).subscribe(new Action1<Void>() {
+      @Override
+      public void call(Void aVoid) {
+        ToastUtil.showSuccess(context, "我是一个测试信息100861");
+      }
+    });
   }
 
   public class Presenter {
@@ -60,12 +70,6 @@ public class FrameActivity extends BaseActivity {
 
     public void onDialog() {
       DialogUtil.getProgressDialog(context).show();
-    }
-
-    public void onToast() {
-      if (ThrottleUtil.doubleClick())
-        return;
-      ToastUtil.showSuccess(context, "我是一个测试信息100861");
     }
 
     public void onPull() {

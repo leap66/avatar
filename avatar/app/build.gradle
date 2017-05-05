@@ -95,5 +95,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'me.dm7.barcodescanner:zxing:1.9'
     compile 'pub.devrel:easypermissions:0.2.1'
+    compile 'com.jakewharton.rxbinding:rxbinding:1.0.1'
     testCompile 'junit:junit:4.12'
 }

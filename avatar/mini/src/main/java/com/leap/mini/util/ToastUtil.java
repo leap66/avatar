@@ -18,6 +18,7 @@ import android.widget.Toast;
  */
 
 public class ToastUtil {
+  private static Toast toastSingle;
 
   public static void showHint(Context context, int stringResId) {
     String s = context.getResources().getString(stringResId);
@@ -59,6 +60,10 @@ public class ToastUtil {
     binding.titleTv.setText(text);
     binding.titleTv.setMaxWidth(Resources.getSystem().getDisplayMetrics().widthPixels * 3 / 5);
     toast.setView(binding.getRoot());
+    if (!IsEmpty.object(toastSingle)) {
+      toastSingle.cancel();
+    }
     toast.show();
+    toastSingle = toast;
   }
 }

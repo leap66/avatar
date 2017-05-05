@@ -13,11 +13,13 @@ import com.leap.avatar.presentation.base.BaseActivity;
 import com.leap.mini.net.PureSubscriber;
 import com.leap.mini.net.network.subscriber.Response;
 import com.leap.mini.util.ToastUtil;
+import com.leap.mini.widget.SearchBar;
 import com.leap.mini.widget.pullrefresh.base.layout.BaseFooterView;
 import com.leap.mini.widget.pullrefresh.base.layout.BaseHeaderView;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.view.View;
 
 /**
  * 主界面
@@ -53,7 +55,13 @@ public class PullActivity extends BaseActivity {
         queryData(false);
       }
     });
-    binding.refreshLayout.startRefresh();
+    binding.searchBar.setOnSearchListener(new SearchBar.OnSearchListener<View, String>() {
+      @Override
+      public void onSearch(View view, String data) {
+        binding.searchBar.setHint(binding.searchBar.getText());
+        binding.refreshLayout.startRefresh();
+      }
+    });
   }
 
   @Override
