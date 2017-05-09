@@ -5,6 +5,10 @@ def gitVersionCode() {
     cmd.execute().text.trim().toInteger()
 }
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 def gitVersionName() {
     def cmd = 'git describe --tags'
     def version = cmd.execute().text.trim()
@@ -40,10 +44,10 @@ android {
     }
     signingConfigs {
         config {
-            storeFile file(String.valueOf(System.getenv('storeFile')))
-            storePassword String.valueOf(System.getenv('storePassword'))
-            keyAlias String.valueOf(System.getenv('keyAlias'))
-            keyPassword String.valueOf(System.getenv('keyPassword'))
+            storeFile file(String.valueOf(System.getenv('storeFile'))) ?: file(['storeFile'])
+            storePassword String.valueOf(System.getenv('storePassword')) ?: keystoreProperties['storePassword']
+            keyAlias String.valueOf(System.getenv('keyAlias')) ?: keystoreProperties['keyAlias']
+            keyPassword String.valueOf(System.getenv('keyPassword')) ?: keystoreProperties['keyPassword']
             v2SigningEnabled false
         }
     }
