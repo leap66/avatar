@@ -3,7 +3,11 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+.idea
+/mini/.idea
 .DS_Store
 /build
 /captures
 .externalNativeBuild
+local.properties
+keystore.properties
