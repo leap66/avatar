@@ -24,7 +24,7 @@ import android.view.View;
 import rx.functions.Action1;
 
 /**
- * 主界面
+ * 防重点击测试界面
  * <p>
  * </> Created by weiyaling on 2017/5/2.
  */

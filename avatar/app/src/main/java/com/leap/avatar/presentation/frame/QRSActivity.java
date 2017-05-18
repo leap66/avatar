@@ -19,7 +19,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
- * 主界面
+ * 二维码测试界面
  * <p>
  * </> Created by weiyaling on 2017/3/7.
  */

@@ -19,7 +19,7 @@ import android.os.Bundle;
 import rx.functions.Action1;
 
 /**
- * 主界面
+ * 框架主界面
  * <p>
  * </> Created by weiyaling on 2017/3/7.
  */

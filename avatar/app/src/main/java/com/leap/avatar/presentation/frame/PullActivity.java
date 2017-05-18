@@ -22,7 +22,7 @@ import android.os.Bundle;
 import android.view.View;
 
 /**
- * 主界面
+ * 下拉刷新主界面
  * <p>
  * </> Created by weiyaling on 2017/3/7.
  */
@@ -32,6 +32,8 @@ public class PullActivity extends BaseActivity {
   private List<String> stringList;
   private MultiTypeAdapter adapter;
   private final int VIEW_TYPE_LIST = 1;
+  private final int VIEW_TYPE_TOP = 2;
+  private final int VIEW_TYPE_TITLE = 3;
 
   @Override
   protected void initComponent() {
@@ -81,7 +83,7 @@ public class PullActivity extends BaseActivity {
   }
 
   private void queryData(final boolean isRefresh) {
-    new SendSmsCase("1390000000").execute(new PureSubscriber() {
+    new SendSmsCase("139000").execute(new PureSubscriber() {
       @Override
       public void onFailure(String errorMsg, Response response) {
         if (isRefresh) {
@@ -91,6 +93,8 @@ public class PullActivity extends BaseActivity {
         for (int i = 0; i < 5; i++) {
           stringList.add(UUID.randomUUID().toString());
         }
+        adapter.add("TOP", VIEW_TYPE_TOP);
+        adapter.add("TITLE", VIEW_TYPE_TITLE);
         adapter.addAll(stringList, VIEW_TYPE_LIST);
         binding.refreshLayout.stopLoad(true);
       }
@@ -113,6 +117,8 @@ public class PullActivity extends BaseActivity {
   private void loadRecyclerView() {
     adapter = new MultiTypeAdapter(this);
     adapter.addViewTypeToLayoutMap(VIEW_TYPE_LIST, R.layout.item_pull);
+    adapter.addViewTypeToLayoutMap(VIEW_TYPE_TOP, R.layout.item_pull);
+    adapter.addViewTypeToLayoutMap(VIEW_TYPE_TITLE, R.layout.item_pull);
     adapter.setPresenter(new Presenter());
     binding.setAdapter(adapter);
   }

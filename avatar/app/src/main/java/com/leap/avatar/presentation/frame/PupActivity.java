@@ -22,7 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 /**
- * 主界面
+ * PupWindow界面
  * <p>
  * </> Created by weiyaling on 2017/3/7.
  */

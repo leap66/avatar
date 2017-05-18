@@ -10,7 +10,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 /**
- * 主界面
+ * 功能主界面
  * <p>
  * </> Created by weiyaling on 2017/3/7.
  */

@@ -17,7 +17,7 @@
         android:label="${app_name}"
         android:supportsRtl="true"
         android:theme="@style/MainTheme">
-        <activity android:name=".presentation.function.FunctionActivity">
+        <activity android:name=".presentation.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +36,7 @@
         <activity android:name=".presentation.frame.PupActivity" />
         <activity android:name=".presentation.frame.QRScannerActivity" />
         <activity android:name=".presentation.frame.QRSActivity" />
-        <activity android:name=".presentation.main.MainActivity" />
+        <activity android:name=".presentation.function.FunctionActivity" />
     </application>
 
 </manifest>
